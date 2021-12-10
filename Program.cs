@@ -6,7 +6,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            Problem p = new Day9("PuzzleInputs/day9.txt");
+            Problem p = new Day10("PuzzleInputs/day10.txt");
             p.Part1();
             p.Part2();
         }
