@@ -1,3 +1,4 @@
+using System.Numerics;
 namespace AdventOfCode2021
 {
     public struct Vector2 {
@@ -21,6 +22,11 @@ namespace AdventOfCode2021
         public override string ToString()
         {
             return "[" + x + ", " + y + "]";
+        }
+
+        public Vector2 Clone()
+        {
+            return new Vector2(x, y);
         }
     }
 }
