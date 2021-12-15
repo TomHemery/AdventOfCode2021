@@ -28,5 +28,10 @@ namespace AdventOfCode2021
         {
             return new Vector2(x, y);
         }
+
+        public int SqrMag()
+        {
+            return x * x + y * y;
+        }
     }
 }

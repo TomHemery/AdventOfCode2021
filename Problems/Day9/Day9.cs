@@ -74,7 +74,7 @@ namespace AdventOfCode2021
         {
             if (!b.Contains(point)) {
                 b.addPoint(point);
-                foreach (Vector2 neighbour in GetOrthoNeighbours(point)) {
+                foreach (Vector2 neighbour in CoordinateGrid.GetOrthoNeighbours(point, heightMap)) {
                     int val = heightMap[neighbour.x, neighbour.y];
                     if(val >= heightMap[point.x, point.y] && val < 9) {
                         RecursiveBuildBasin(b, neighbour);
@@ -85,23 +85,12 @@ namespace AdventOfCode2021
 
         protected bool LowestInNeighbourhood(int[,] heightMap, int xPos, int yPos)
         {
-            foreach(Vector2 neighbour in GetOrthoNeighbours(new Vector2(xPos, yPos)))
+            foreach(Vector2 neighbour in CoordinateGrid.GetOrthoNeighbours(new Vector2(xPos, yPos), heightMap))
             {
                 if(heightMap[neighbour.x, neighbour.y] <= heightMap[xPos, yPos]) return false;
             }
 
             return true;
         }
-
-        protected List<Vector2> GetOrthoNeighbours(Vector2 point)
-        {
-            List<Vector2> result = new List<Vector2>();
-            if(point.x - 1 >= 0) result.Add(new Vector2(point.x - 1, point.y));
-            if(point.x + 1 < heightMap.GetLength(0)) result.Add(new Vector2(point.x + 1, point.y));
-            if(point.y - 1 >= 0) result.Add(new Vector2(point.x, point.y - 1));
-            if(point.y + 1 < heightMap.GetLength(1)) result.Add(new Vector2(point.x, point.y + 1));
-            return result;
-        }
-
     }
 }
