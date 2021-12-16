@@ -7,7 +7,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            Problem p = new Day15("PuzzleInputs/day15.txt");
+            Problem p = new Day16("PuzzleInputs/day16.txt");
             Stopwatch watch = new Stopwatch();
             watch.Start();
             p.Part1();
