@@ -70,22 +70,25 @@ namespace AdventOfCode2021
             }
         }
 
+        public int GetMagnitude() {
+            if(IsLeaf()) return value;
+            else return left.GetMagnitude() * 3 + right.GetMagnitude() * 2;
+        }
+
         public static SnailTreeNode Add(SnailTreeNode a, SnailTreeNode b)
         {
             SnailTreeNode parent = new SnailTreeNode(a, b);
             a.parent = parent;
             b.parent = parent;
+            Reduce(parent);
             return parent;
         }
 
         public static void Reduce(SnailTreeNode node)
         {
-            //Console.WriteLine("Reducing: " + node);
             while (true) {
                 ExplodeAll(node);
-                //Console.WriteLine("After explode all: " + node);
                 if (!SplitFirst(node)) break;
-                //Console.WriteLine("After split first: " + node);
             }
         }
 
@@ -138,10 +141,8 @@ namespace AdventOfCode2021
                 curr = curr.parent;
                 if (curr.parent == null) return null;
             }
-            if(curr.parent.left != curr) {
-                curr = curr.parent.left;
-                while (!curr.IsLeaf()) curr = curr.left;
-            }
+            curr = curr.parent.left;
+            while (!curr.IsLeaf()) curr = curr.right;
             return curr;
         } 
 
